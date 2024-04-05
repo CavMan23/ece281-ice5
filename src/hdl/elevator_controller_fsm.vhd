@@ -124,11 +124,15 @@ begin
         if i_reset = '1' then
             f_Q <= s_floor2; -- Default to floor2 
             
-        elsif i_stop = '1' then
-            f_Q <= f_Q; -- If stopped, stay in the current state
-            
-        else
-            f_Q <= f_Q_next; -- Update state based on next state logic
+        elsif rising_edge(i_clk) then
+        
+            if i_stop = '1' then
+                f_Q <= f_Q; -- If stopped, stay in the current state
+                
+            else
+                f_Q <= f_Q_next; -- Update state based on next state logic
+                
+            end if;
             
         end if;
          
